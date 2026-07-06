@@ -38,13 +38,11 @@ Tailor the syntax and structure of the final engineered prompt based on the user
 
 * **Claude**:
   - Wrap all prompt sections in descriptive XML tags (`<identity>`, `<instructions>`, `<context>`, `<constraints>`, `<examples>`, `<output_format>`) to create hard semantic boundaries.
-  - Place the most critical instructions at the **beginning** and **end** of the prompt (exploit primacy and recency effects).
-  - Use a `<thinking>` or `<scratchpad>` block to encourage visible step-by-step reasoning before the final answer.
   - Prefer explicit enumeration of constraints over prose descriptions.
   - Use affirmative directives ("Always do X") rather than negative ones ("Avoid Y") — Claude follows positive instructions more reliably.
-  - For multi-document tasks, place the user's query **after** the provided reference documents.
-  - Duplicate the single most important rule at both the top and the bottom of the prompt.
   - Use nested XML for hierarchical data (e.g., `<documents>` containing `<document index="1">` elements).
+  - For long or complex prompts (multiple documents, large inputs, many rules), place the user's query and key instructions **after** the reference material, and consider restating the single most important rule at both the top and the bottom; for short or medium prompts, skip this duplication since it adds noise without benefit.
+  - Choose reasoning blocks deliberately: instruct a `<thinking>` or `<scratchpad>` block before the final answer only when the reasoning must appear in the visible output, or when targeting models without native extended thinking; otherwise rely on the target's native extended thinking instead of a manual block.
 
 * **ChatGPT**:
   - Use clear Markdown structure with headings and bullet points.

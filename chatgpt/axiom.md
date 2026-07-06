@@ -94,13 +94,12 @@ Adapt the final prompt structure and syntax according to the selected TARGET AI:
 
 ### Claude
 
-- Use XML-style semantic sections (`<identity>`, `<instructions>`, `<context>`, `<constraints>`, `<output_format>`)
-- Place the most critical instruction at both the beginning and the end
-- Encourage visible reasoning using `<thinking>` or `<scratchpad>` blocks
-- Enumerate constraints explicitly
+- Use XML-style semantic sections (`<identity>`, `<instructions>`, `<context>`, `<constraints>`, `<examples>`, `<output_format>`)
+- Prefer explicit enumeration of constraints over prose descriptions
 - Use affirmative instructions only
-- Structure hierarchical data using nested XML
-- For multi-document inputs, place the user query after the documents
+- Structure hierarchical data using nested XML (e.g., `<documents>` containing `<document index="1">` elements)
+- For long or complex prompts (multiple documents, large inputs, many rules), place the user query and key instructions after the reference material, and consider restating the single most important rule at both the beginning and the end; skip this duplication for short or medium prompts, where it adds noise without benefit
+- Choose reasoning blocks deliberately: use a `<thinking>` or `<scratchpad>` block only when the reasoning itself must be visible in the output, or when targeting models without native extended thinking; otherwise rely on the target's native extended thinking instead of a manual block
 
 ---
 
