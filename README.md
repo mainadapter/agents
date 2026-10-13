@@ -1,146 +1,149 @@
-# AI Prompts Repository
+# AI Agents Repository
 
-A curated collection of specialized, production-ready prompts designed to maximize the capabilities of modern AI platforms. This repository contains optimized prompts for **Gemini**, **Claude** and **ChatGPT**, each engineered to extract maximum value from their respective AI models.
+A versioned collection of AI agents, skills, personas, and platform adaptations designed to preserve durable behavior across changing AI ecosystems.
 
-## 📋 Overview
+This repository began as a prompt library. As AI platforms evolved beyond simple prompt configuration into skills, agents, tools, and provider-native artifacts, the repository evolved with them.
 
-This repository serves as a comprehensive prompt library for different AI platforms. Each prompt is carefully crafted with:
+The current direction is **agent-first** rather than **platform-first**: define what an agent is and how it should behave once, then adapt that definition to ChatGPT, Claude, Gemini, or another platform as needed.
 
-- **Clear role definitions** - Specific AI personas and expertise areas
-- **Detailed instructions** - Structured methodology and frameworks
-- **Optimized formatting** - Platform-specific syntax and conventions
-- **Practical examples** - Real-world use cases and output constraints
+## Why this repository exists
 
-## 📁 Repository Structure
+AI providers evolve quickly. Product surfaces, model behavior, recommended prompting patterns, and packaging formats can change in months.
+
+Keeping one fully independent prompt per provider creates drift and makes portability expensive. This repository instead aims to separate:
+
+- **Core behavior** — mission, expertise, workflow, inputs, outputs, and quality constraints.
+- **Persona** — name, voice, interaction style, and optional role-relevant personality.
+- **Platform adaptation** — how the durable definition should be materialized in a provider's current ecosystem.
+
+The goal is not to force every model through the same prompt. The goal is to preserve the same agent while allowing each platform to implement it appropriately.
+
+## Axiom
+
+**Axiom** is the meta-agent at the center of this architecture.
+
+Axiom is no longer defined merely as a prompt optimizer. It is an **AI instruction architect** that transforms raw intent into a structured specification for the smallest suitable AI artifact.
+
+Depending on the request, Axiom may produce:
+
+- a direct prompt specification;
+- a reusable skill specification;
+- a portable agent specification;
+- a handoff for another platform-native artifact.
+
+When a platform provides a maintained native creator for skills or agents, Axiom should define the artifact clearly and delegate final packaging to that mechanism rather than duplicating volatile implementation rules.
+
+See [`axiom/core.md`](axiom/core.md) for the canonical definition and [`docs/architecture.md`](docs/architecture.md) for the repository design.
+
+## Repository structure
+
+The new structure is organized around agents:
 
 ```text
-├── chatgpt/                 # ChatGPT specific prompts
+├── axiom/
+│   ├── core.md
+│   ├── persona.md
+│   ├── platforms/
+│   │   ├── chatgpt.md
+│   │   ├── claude.md
+│   │   └── gemini.md
+│   └── outputs/
+│       ├── prompt-spec.md
+│       ├── skill-spec.md
+│       └── agent-spec.md
 │
-├── claude/                  # Claude optimized prompts
-│   ├── agents/              # Persona-driven AI agents
-│   │   └── dotty-nett.md    # .NET 10 Solutions Architect
-│   └── skills/              # Specialized Claude skills
-│       └── axiom.md         # Prompt optimization specialist
+├── docs/
+│   └── architecture.md
 │
-├── gemini/                  # Google Gemini prompts
-│   ├── agents/              # Persona-driven AI agents
-│   │   ├── aline-aguiar.md  # Autonomous Calendar Agent
-│   │   ├── audrey-tor.md    # Documentation auditor
-│   │   ├── dotty-nett.md    # .NET 10 Solutions Architect
-│   │   ├── paige-turner.md  # Document analysis specialist
-│   │   └── yusef-fect.md    # React Native Mobile Architect
-│   │
-│   └── gems/               # Named, specialized Gemini prompts
-│       └── axiom.md        # Prompt optimization specialist
-│
-├── LICENSE                  # GPL v3 License
-└── README.md               # This file
+├── chatgpt/                 # Legacy provider-first structure during migration
+├── claude/                  # Legacy provider-first structure during migration
+├── gemini/                  # Legacy provider-first structure during migration
+├── LICENSE
+└── README.md
 ```
 
-## 🚀 Featured Prompts
+The provider-first directories remain temporarily as reference implementations while agents are migrated incrementally.
 
-### Gemini Gems
+## Architecture principles
 
-| Prompt    | Purpose                                                                                                                                                                                                                 |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Axiom** | Transform vague ideas into precision-engineered prompts. Optimizes requests to extract maximum potential from ChatGPT, Claude, Gemini, and other AIs using the 4-D Framework (Deconstruct, Diagnose, Develop, Deliver). |
+### Core before platform
 
-### AI Agents
+An agent's mission and quality bar should not change simply because the provider changed.
 
-| Agent            | Platform(s)    | Role                                                                                                                                                                                   |
-| ---------------- | -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Aline Aguiar** | Gemini         | Autonomous calendar scheduling agent integrated with Google Workspace. Creates Google Calendar events immediately from structured data without conversational interactions.            |
-| **Audrey Tor**   | Gemini         | Expert content auditor that identifies redundant information between sections of documentation and Notion notes. Performs comparative analysis to find overlapping concepts and repeated data. |
-| **Dotty Nett**   | Gemini, Claude | Elite Senior Software Engineer and Enterprise Solutions Architect specializing in the modern .NET ecosystem (.NET 10).                                                                 |
-| **Paige Turner** | Gemini         | Document analysis and processing specialist for extracting insights from various text formats.                                                                                         |
-| **Yusef Fect**   | Gemini         | Principal Mobile Architect specializing in React Native, Clean Architecture, and high-performance native integrations.                                                                 |
+### Platform-specific implementation still matters
 
-### Multi-Platform Support
+Portability does **not** mean using one universal prompt everywhere. Each platform adapter may use different packaging, structure, tools, or native creation mechanisms.
 
-The repository includes cross-platform variants of prompts optimized for:
+### Native creators own volatile packaging
 
-- **Claude** - XML tag-based context separation and step-by-step reasoning
-- **Gemini** - Clear markdown, comparative analysis frameworks, and explicit guardrails
-- **ChatGPT** - Conversational flow optimization and step-by-step outputs
+When ChatGPT, Claude, Gemini, or another provider offers a maintained way to create a skill or agent, prefer handing it a clear specification over teaching Axiom every implementation detail permanently.
 
-## 💡 Getting Started
+### Personality is optional but first-class
 
-### Using These Prompts
+Long-lived agents can have recognizable names and personalities. This is especially useful for tutors, companions, reviewers, architects, and other recurring roles.
 
-1. **Navigate to your platform folder** (`gemini/`, `claude/`, `chatgpt/`)
-2. **Select the prompt** you want to use
-3. **Copy the entire prompt content** (including YAML frontmatter and instructions)
-4. **Paste into your AI platform** and follow the usage guidelines
+Personality may influence tone and interaction style, but never accuracy or task competence. A light pun or wordplay in an agent name is welcome when it fits naturally — examples in the repository include names such as **Dotty Nett**, **Artie Board**, **Becky Logër**, **Paige Turner**, and **Yusef Fect**.
 
-### Prompt Structure
+### Avoid model folklore in the core
 
-Each prompt typically includes:
+Do not hard-code techniques such as mandatory XML, visible `<thinking>` blocks, or fixed reasoning scaffolds as universal truths. Provider guidance belongs in replaceable adapters and should be revisited as models evolve.
 
-- **YAML Frontmatter** - Description, name, and version metadata
-- **Role Definition** - The AI's persona and expertise
-- **Context & Instructions** - Detailed methodology and frameworks
-- **Output Constraints** - Specific formatting requirements and deliverables
-- **Usage Examples** - Format and practical applications
+## Axiom flow
 
-### Example: Using Axiom
-
-```
-[MODE] using [TARGET AI] - [Your raw idea]
+```text
+Raw intent
+   ↓
+Axiom core
+   ↓
+Artifact selection
+   ↓
+Portable specification
+   ↓
+Platform adapter
+   ↓
+Native creator / current platform mechanism
+   ↓
+Final artifact
 ```
 
-The Axiom prompt will then deconstruct, diagnose, develop, and deliver an optimized prompt tailored to your target AI platform.
+## Legacy agents
 
-## 📝 License
+The repository already contains agents and platform-specific definitions such as:
 
-This project is licensed under the **GNU General Public License v3.0** - see the [LICENSE](LICENSE) file for details.
+- **Aline Aguiar** — calendar scheduling agent;
+- **Artie Board** — UX/UI co-creation specialist;
+- **Audrey Tor** — documentation auditor;
+- **Becky Logër** — product owner for solo builders;
+- **Dotty Nett** — .NET software architect;
+- **Paige Turner** — document analysis specialist;
+- **Yusef Fect** — React Native architect.
 
-The GPL v3 license ensures that:
+These files are useful migration references. Multi-platform agents will gradually move toward canonical agent-first definitions with platform adapters rather than independent duplicated prompts.
 
-- You can use, modify, and distribute these prompts freely
-- Any modifications or improvements should also be made available under the same license
-- You must provide attribution and disclose your source code
+## Migration plan
 
-## 🤝 Contributing
+1. Establish Axiom v2 and the agent-first architecture.
+2. Migrate one existing multi-platform agent to validate the pattern.
+3. Migrate the remaining agents incrementally.
+4. Remove legacy provider-first copies only after the canonical definitions are validated.
 
-Contributions are welcome! If you have optimized prompts or improvements:
+## Contributing
 
-1. Follow the existing format and YAML structure
-2. Test your prompt with the target AI platform
-3. Add clear descriptions and usage examples
-4. Ensure compatibility with platform-specific syntax
+When adding or evolving an agent:
 
-## 📚 Best Practices
+1. Define durable behavior separately from platform mechanics.
+2. Keep persona subordinate to quality and competence.
+3. Add platform adaptation only where it provides real value.
+4. Prefer current native platform mechanisms over copied historical prompt patterns.
+5. Test the resulting artifact on the intended platform.
+6. Document meaningful behavioral or architectural changes.
 
-- **Keep prompts modular** - Reuse components across different prompts
-- **Test thoroughly** - Validate prompts with your target AI multiple times
-- **Document clearly** - Include examples and constraint specifications
-- **Version your prompts** - Use semantic versioning in the YAML frontmatter
-- **Optimize for platform** - Adapt syntax and structure for each AI model
+## License
 
-## 🔍 Platform-Specific Notes
+This project is licensed under the **GNU General Public License v3.0**. See [`LICENSE`](LICENSE) for details.
 
-### Gemini
-
-- Enforce strict XML block structures for prompt modularity (e.g., `<persona>`, `<task>`, `<constraints>`).
-- Translate all negative constraints into explicit positive commands (e.g., use "Output exactly X" instead of "Do not output Y").
-- Inject a mandatory `<thinking>` or `<planning>` block before final outputs to force Chain-of-Thought reasoning.
-- Place massive reference context at the top of the prompt, and specific execution instructions at the very bottom.
-
-### Claude
-
-- Wrap all prompt sections in descriptive XML tags (`<identity>`, `<instructions>`, `<context>`, `<constraints>`, `<examples>`, `<output_format>`) to create hard semantic boundaries.
-- Place the most critical instructions at the **beginning** and **end** of the prompt (exploit primacy and recency effects).
-- Use a `<thinking>` or `<scratchpad>` block to encourage visible step-by-step reasoning before the final answer.
-- Prefer explicit enumeration of constraints over prose descriptions.
-- Use affirmative directives ("Always do X") rather than negative ones ("Avoid Y") — Claude follows positive instructions more reliably.
-- For multi-document tasks, place the user's query **after** the provided reference documents.
-- Duplicate the single most important rule at both the top and the bottom of the prompt.
-- Use nested XML for hierarchical data (e.g., `<documents>` containing `<document index="1">` elements).
-
-## 📧 Support
-
-For questions or issues related to specific prompts, please refer to the prompt's description and constraints. Each prompt is self-contained with complete usage instructions.
+The GPL v3 license allows use, modification, and redistribution under the terms described in the license, including the corresponding copyleft obligations for distributed derivative works.
 
 ---
 
-**Last Updated:** May 2026
+**Architecture transition:** Axiom v2 / agent-first repository model.
