@@ -26,10 +26,10 @@ Axiom is no longer defined merely as a prompt optimizer. It is an **AI instructi
 
 Depending on the request, Axiom may produce:
 
-- a direct prompt specification;
-- a reusable skill specification;
-- a portable agent specification;
-- a handoff for another platform-native artifact.
+- a direct prompt specification for a bounded request;
+- a modular skill specification for a reusable capability or workflow;
+- a portable agent specification for a durable identity that may own multiple capabilities;
+- a handoff for another platform-native artifact when the provider offers a better fit.
 
 When a platform provides a maintained native creator for skills or agents, Axiom should define the artifact clearly and delegate final packaging to that mechanism rather than duplicating volatile implementation rules.
 
@@ -74,6 +74,8 @@ An agent's mission and quality bar should not change simply because the provider
 
 Portability does **not** mean using one universal prompt everywhere. Each platform adapter may use different packaging, structure, tools, or native creation mechanisms.
 
+Adapters should be reviewed against current official documentation and, when practical, validated using the target platform itself. Platform-specific discoveries stay in the adapter unless they reveal a genuinely provider-neutral rule.
+
 ### Native creators own volatile packaging
 
 When ChatGPT, Claude, Gemini, or another provider offers a maintained way to create a skill or agent, prefer handing it a clear specification over teaching Axiom every implementation detail permanently.
@@ -83,6 +85,8 @@ When ChatGPT, Claude, Gemini, or another provider offers a maintained way to cre
 Long-lived agents can have recognizable names and personalities. This is especially useful for tutors, companions, reviewers, architects, and other recurring roles.
 
 Personality may influence tone and interaction style, but never accuracy or task competence. A light pun or wordplay in an agent name is welcome when it fits naturally — examples in the repository include names such as **Dotty Nett**, **Artie Board**, **Becky Logër**, **Paige Turner**, and **Yusef Fect**.
+
+`axiom/persona.md` defines how Axiom designs persona for generated artifacts; it does not mean Axiom itself needs a strong character persona.
 
 ### Avoid model folklore in the core
 
@@ -134,9 +138,10 @@ When adding or evolving an agent:
 1. Define durable behavior separately from platform mechanics.
 2. Keep persona subordinate to quality and competence.
 3. Add platform adaptation only where it provides real value.
-4. Prefer current native platform mechanisms over copied historical prompt patterns.
-5. Test the resulting artifact on the intended platform.
-6. Document meaningful behavioral or architectural changes.
+4. Validate platform adapters against current official guidance and, when practical, the target platform itself.
+5. Prefer current native platform mechanisms over copied historical prompt patterns.
+6. Test the resulting artifact on the intended platform.
+7. Document meaningful behavioral or architectural changes.
 
 ## License
 
