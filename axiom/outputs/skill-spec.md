@@ -1,6 +1,6 @@
 ---
 artifact: skill-spec
-version: 2.0.0-draft
+version: 2.1.0-draft
 ---
 
 # Skill Specification
@@ -16,7 +16,7 @@ Working name for the skill. May include a subtle role-relevant pun when appropri
 What repeatable outcome the skill exists to produce.
 
 ### When to invoke
-Conditions that distinguish this skill from a normal prompt or another skill.
+Conditions that distinguish this skill from a normal prompt or another skill. Include adjacent phrasing or intent boundaries when automatic selection could otherwise be ambiguous.
 
 ### Inputs
 User input, files, connected data, parameters, or context required.
@@ -44,10 +44,13 @@ Reference `../persona.md` for the general contract. Define only role-relevant vo
 ### Examples and edge cases
 Include when they materially clarify invocation or behavior.
 
+### Validation scenarios
+Provide 2–3 representative requests when a native creator or platform can use them to verify triggering, workflow behavior, or output quality. Include a non-trigger example when invocation boundaries are easy to confuse.
+
 ## Handoff contract
 
 This document is a **specification**, not necessarily the final platform package.
 
-The relevant platform adapter should determine the handoff. When a current native skill creator exists, give it this specification and allow it to decide the up-to-date package structure, metadata, scripts, references, and other implementation details.
+The relevant platform adapter should determine the handoff. When a current native skill creator exists, give it this specification and allow it to decide the up-to-date package structure, metadata, scripts, references, tests, and other implementation details.
 
 Do not encode provider-specific packaging rules here.
