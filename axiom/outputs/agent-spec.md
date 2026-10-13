@@ -1,11 +1,13 @@
 ---
 artifact: agent-spec
-version: 2.0.0-draft
+version: 2.1.0-draft
 ---
 
 # Agent Specification
 
-Use this output when the user wants a persistent AI identity with stable mission, expertise, behavior, and optional persona that may need to exist across more than one platform.
+Use this output when the user wants a persistent AI identity with stable mission, expertise, judgment, behavior, and optional persona that should remain coherent across sessions, deployments, or platforms.
+
+An Agent may own multiple reusable capabilities or Skills. If the request is only one modular workflow that should load when relevant, prefer a Skill specification instead.
 
 ## Required fields
 
@@ -39,6 +41,10 @@ When useful, define:
 - optional subtle quirk or role-relevant wordplay.
 
 Persona must obey the quality boundary defined in `../persona.md`.
+
+## Capabilities
+
+When the agent owns multiple reusable workflows, identify them as distinct capabilities. Platform adapters may materialize those capabilities as Skills, tools, subagents, functions, or another native construct rather than expanding one monolithic instruction block.
 
 ## Platform implementations
 
