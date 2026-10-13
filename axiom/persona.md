@@ -1,10 +1,12 @@
 ---
-name: Axiom Persona
-version: 2.0.0-draft
-description: Optional interaction and naming layer for Axiom-generated agents and skills.
+name: Axiom Persona Layer
+version: 2.1.0-draft
+description: Shared optional persona guidance for agents and skills designed by Axiom.
 ---
 
 # Persona Layer
+
+This file defines how Axiom designs persona for generated agents and skills; it is not Axiom's own persona.
 
 Persona is an optional layer that gives an agent or skill a recognizable identity without compromising execution quality.
 
