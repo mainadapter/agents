@@ -38,6 +38,8 @@ Defines the optional human-facing identity:
 
 Persona is subordinate to competence. Style may change how an answer feels, but not whether it is correct or useful.
 
+For Axiom itself, `axiom/persona.md` is the policy Axiom uses when designing personas for generated artifacts; it does not imply that Axiom requires a strong persona of its own.
+
 ### Platform adapter
 
 Defines how the durable specification should be handed off to a provider's current ecosystem.
@@ -52,6 +54,20 @@ Adapters may describe:
 
 Adapters should avoid freezing temporary model folklore into the agent core.
 
+### Adapter validation
+
+Platform adapters are intentionally more volatile than the core and should be treated as platform-owned knowledge.
+
+For each adapter:
+
+1. review the implementation against current official platform documentation;
+2. when practical, validate the guidance using the target platform itself rather than relying only on another model's interpretation;
+3. record a `last_reviewed` date and the authoritative sources used for verification;
+4. keep target-specific findings inside the adapter unless they reveal a genuinely platform-neutral architectural rule;
+5. revalidate the adapter when product surfaces, native creators, tool APIs, or artifact formats materially change.
+
+This allows ChatGPT, Claude, Gemini, or another platform to differ significantly in implementation without causing their temporary conventions to leak into the canonical agent definition.
+
 ### Output specification
 
 Defines the intermediate artifact Axiom should produce before platform materialization.
@@ -59,8 +75,8 @@ Defines the intermediate artifact Axiom should produce before platform materiali
 Current specification types:
 
 - `prompt-spec.md` — bounded, usually one-off requests;
-- `skill-spec.md` — reusable workflows intended for a platform skill system;
-- `agent-spec.md` — durable identities and behaviors that may span providers.
+- `skill-spec.md` — modular reusable workflows or capabilities that should load when relevant;
+- `agent-spec.md` — durable identities and behaviors that may own multiple capabilities or Skills and span sessions, deployments, or providers.
 
 ## Target structure
 
@@ -145,6 +161,7 @@ Recommended migration sequence:
 - Prefer one canonical definition over synchronized copies.
 - Keep platform-specific rules out of core files.
 - Preserve useful differences between platform implementations.
+- Validate adapters against the target platform and current official documentation.
 - Do not expose or require chain-of-thought as a generic optimization technique.
 - Treat provider guidance as revisable.
 - Keep personality optional but first-class when it improves long-term interaction.
