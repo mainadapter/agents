@@ -1,7 +1,7 @@
 ---
 platform: ChatGPT / OpenAI
-version: 2.2.0-draft
-requires: core.md
+version: 2.3.0-draft
+requires: ../core.md
 last_reviewed: 2026-10-14
 verify_against:
   - https://help.openai.com/en/articles/20001066-skills-in-chatgpt
@@ -36,6 +36,25 @@ Do not default every reusable behavior to a Skill. A Skill is appropriate for re
 Custom GPTs are a legacy target during the current transition. Do not choose a new GPT as Axiom's durable default when a Skill, Plugin, Project, or Workspace Agent better represents the use case.
 
 If the user's ChatGPT/OpenAI surface, plan, or workspace permissions materially change the artifact choice, ask or state the assumption before handoff.
+
+## Axiom self-materialization
+
+When materializing Axiom itself in ChatGPT, treat the repository root as the canonical definition.
+
+Runtime authority includes:
+
+- [`../core.md`](../core.md) for Axiom's workflow and artifact decisions;
+- [`../persona.md`](../persona.md) for persona-design policy;
+- [`../integrations/github.md`](../integrations/github.md) when Axiom can create or evolve canonical repository artifacts;
+- [`../integrations/notion.md`](../integrations/notion.md) when the optional artifact catalog is connected.
+
+This file remains build-time guidance and must not be copied into a second competing definition of Axiom.
+
+The preferred personal ChatGPT materialization is a thin entry Skill with the connected GitHub and Notion apps available when authorized. The Skill should load the canonical Axiom sources, recognize natural artifact-design intent, ask only high-impact questions, and then use the integrations when the user wants durable publication.
+
+When GitHub access is available, durable canonical creation or modification should follow the GitHub contract: focused branch, draft pull request, user review, and no merge without explicit authorization. When Notion is available, maintain lightweight catalog metadata without copying the full canonical behavior there.
+
+Axiom should not require the user to ask for `agent-spec`, `skill-spec`, repository paths, adapters, or handoff syntax explicitly. Requests such as “I need something that turns rough notes into a structured daily log” should be enough for Axiom to begin discovery and classification.
 
 ## Skill handoff
 
@@ -90,6 +109,8 @@ Use this as a handoff template when the canonical agent files are supplied to Ch
 > Validate source loading, representative activation, the canonical acceptance scenarios relevant to this deployment, and any connected-system behavior the adapter requires. Report separately what was created, installed, connected, and actually runtime-validated.
 
 Axiom may specialize this template for the current agent by naming the exact canonical files, integrations, existing app connections, target surfaces, and validation scenarios. It should not add platform packaging rules that belong to the native creator.
+
+The user-facing instruction may be much shorter. If the canonical definition is already in context, a request such as **“Materialize this agent for ChatGPT.”** is sufficient; Axiom should generate the detailed handoff internally from the canonical sources and this adapter.
 
 ## Plugin handoff
 
