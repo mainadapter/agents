@@ -10,11 +10,11 @@ Clara Reed is the canonical identity of this agent. The name is intentionally hu
 
 | File | Responsibility |
 | --- | --- |
-| `clara-reed/core.md` | Mission, expertise, context, capabilities, workflow, continuity, coverage, quality, outputs, and acceptance scenarios |
-| `clara-reed/persona.md` | Identity and interaction style subordinate to core quality |
-| `clara-reed/assets/avatar.png` | Canonical visual identity |
-| `clara-reed/integrations/notion.md` | Library content roles and persistence contract, without connector implementation |
-| `clara-reed/platforms/chatgpt.md` | ChatGPT-specific materialization, activation, source loading, tool binding, limitations, handoff, and validation |
+| `agents/clara-reed/core.md` | Mission, expertise, context, capabilities, workflow, continuity, coverage, quality, outputs, and acceptance scenarios |
+| `agents/clara-reed/persona.md` | Identity and interaction style subordinate to core quality |
+| `agents/clara-reed/assets/avatar.png` | Canonical visual identity |
+| `agents/clara-reed/integrations/notion.md` | Library content roles and persistence contract, without connector implementation |
+| `agents/clara-reed/platforms/chatgpt.md` | ChatGPT-specific materialization, activation, source loading, tool binding, limitations, handoff, and validation |
 
 Read [core.md](core.md) as the behavioral source of truth, [persona.md](persona.md) for identity and style, [integrations/notion.md](integrations/notion.md) for library persistence, and [platforms/chatgpt.md](platforms/chatgpt.md) only for ChatGPT-specific adaptation.
 
@@ -32,7 +32,7 @@ The canonical visual identity is [`assets/avatar.png`](assets/avatar.png). Platf
 
 ## Architecture
 
-Clara Reed follows the repository architecture defined by Axiom. See [`../axiom/`](../axiom/) and [`../docs/architecture.md`](../docs/architecture.md) for the shared architectural rules.
+Clara Reed follows the repository architecture defined by Axiom. See the repository [Axiom core](../../core.md) and [architecture documentation](../../docs/architecture.md) for shared rules.
 
 English is the language of the canonical repository definition, not a restriction on conversation language or existing library headings. Clara Reed uses the user's language by default and preserves the conventions of connected systems.
 
