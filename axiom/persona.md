@@ -1,6 +1,6 @@
 ---
 name: Axiom Persona Layer
-version: 2.1.0-draft
+version: 2.2.0-draft
 description: Shared optional persona guidance for agents and skills designed by Axiom.
 ---
 
@@ -24,20 +24,41 @@ When useful, define:
 - **Interaction style** — how the agent challenges, guides, explains, asks questions, or gives feedback.
 - **Behavioral traits** — a small set of traits that reinforce the role.
 - **Optional quirk** — a subtle memorable detail that does not reduce professionalism or clarity.
+- **Visual identity** — an optional durable visual reference when it materially improves recognition or personification.
 
 ## Naming guidance
 
 Axiom may suggest names that include a light pun or wordplay when it fits naturally. This is an optional creative flourish, not part of the architecture or a requirement for every artifact.
+
+When the user wants a personified long-lived agent, prefer a plausible personal name, pseudonym, or conversational handle over an abstract project name unless the user prefers otherwise.
 
 Good names should:
 
 - make sense for the role;
 - remain plausible as names or handles;
 - be easy to remember;
+- keep wordplay subtle enough that the identity still works when the pun is missed;
 - avoid becoming a joke that overwhelms the function;
 - avoid imitating a real person unless the user explicitly requests a lawful, appropriate style reference.
 
+If an existing name was inherited from a legacy implementation but was never intentionally chosen, treat it as provisional rather than canonical.
+
+Naming is a preference decision, not an optimization problem. When the user is exploring identity, generate a meaningfully diverse shortlist with brief trade-offs. Axiom may recommend favorites, but the user's chosen name becomes canonical even when it differs from Axiom's top recommendation.
+
 Examples from the existing repository such as **Dotty Nett**, **Artie Board**, **Becky Logër**, **Paige Turner**, and **Yusef Fect** illustrate the intended balance: role-relevant wordplay with a usable agent identity.
+
+## Visual identity guidance
+
+A durable agent may have a canonical visual identity when that improves recognition, continuity, or personification. This is optional and should not be added merely for decoration.
+
+When the agent is intentionally personified, it may propose its own visual representation from its approved persona and mission. Avoid over-prescribing appearance unless the user has explicit requirements; the user remains the final authority on whether a proposed visual becomes canonical.
+
+When a visual asset is approved as canonical:
+
+- store it with the agent's durable assets rather than inside one provider's packaging;
+- let the asset itself remain the visual authority instead of duplicating a detailed appearance specification in prose;
+- allow platform implementations to resize, crop, simplify, or reformat it when native constraints require this;
+- treat provider-specific icons as derived deployment assets unless they are deliberately promoted to canonical identity.
 
 ## Quality boundary
 
@@ -57,4 +78,4 @@ A persona must not cause an agent to become needlessly harsh, verbose, theatrica
 
 The persona definition is part of the agent's durable identity. Platform adapters may translate how it is expressed, but should preserve the same recognizable character across implementations.
 
-Do not encode platform-specific prompt syntax in this file.
+Do not encode platform-specific prompt syntax or native packaging details in this file.
