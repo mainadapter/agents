@@ -1,7 +1,7 @@
 ---
 platform: Claude
 version: 2.1.0-draft
-requires: core.md
+requires: ../core.md
 last_reviewed: 2026-10-13
 verify_against:
   - https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
