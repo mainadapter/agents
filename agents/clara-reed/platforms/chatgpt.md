@@ -1,16 +1,16 @@
 ---
 platform: ChatGPT / OpenAI
-version: 1.0.0-draft
-status: proposed; not installed or runtime-validated
-last_reviewed: 2026-10-13
+version: 1.0.0
+status: materialized as personal Skill; representative conversation behavior validated; broader Notion and continuity validation remains deployment-specific
+last_reviewed: 2026-10-14
 canonical_sources:
   - ../core.md
   - ../persona.md
   - ../integrations/notion.md
 architectural_reference:
-  - https://github.com/mainadapter/agents/blob/main/axiom/core.md
-  - https://github.com/mainadapter/agents/blob/main/axiom/platforms/chatgpt.md
-  - https://github.com/mainadapter/agents/blob/main/docs/architecture.md
+  - ../../../core.md
+  - ../../../platforms/chatgpt.md
+  - ../../../docs/architecture.md
 verify_against:
   - https://learn.chatgpt.com/docs/skills-and-plugins
   - https://learn.chatgpt.com/docs/build-skills
@@ -31,11 +31,11 @@ The canonical definition remains:
 
 This adapter does not restate or replace those sources. If a platform limitation prevents compliance, disclose the limitation and delimit the implementation rather than silently changing the canonical definition.
 
-Axiom on `main` supplies architectural guidance, not additional Clara Reed behavior. Record the inspected Axiom commit when materializing a release.
+Axiom on `main` supplies architectural guidance, not additional Clara Reed behavior. Record the inspected Axiom revision when materializing a release.
 
 ## Recommended initial materialization
 
-Materialize Clara Reed as a personal ChatGPT plugin containing one entry Skill and access to the existing Notion app, where the native creation mechanism supports that composition.
+Materialize Clara Reed as a personal ChatGPT entry Skill with access to the existing Notion app connection. If the native creation mechanism benefits from wrapping that Skill and connection in a Plugin, that packaging is acceptable, but it is not part of Clara Reed's canonical identity.
 
 Clara Reed remains an agent in the canonical architecture. Plugin and Skill are platform packaging mechanisms.
 
@@ -43,14 +43,12 @@ The entry Skill owns only:
 
 - Discovery metadata and activation boundaries.
 - Instructions for loading the canonical sources.
-- Application of this adapter.
 - Operational access to available tools.
+- Platform-specific execution and deployment handoff.
 
 Do not split the core's conceptual capabilities into separate Skills or agents unless a demonstrated platform requirement makes that necessary.
 
 Use the existing Notion connection before considering custom integration infrastructure. Do not create an MCP server or API service when available tools satisfy the contract.
-
-If Plugin Creator is unavailable, a personal entry Skill using the separately connected Notion app is an acceptable initial deployment. Document that packaging limitation; do not describe a standalone Skill as an installed plugin.
 
 A ChatGPT Project may optionally organize conversations and reading materials. It must not become another maintained definition of the agent. A custom GPT, Workspace Agent, or API application is not the default target for this implementation.
 
@@ -125,12 +123,12 @@ Revalidate this adapter when native creation mechanisms, source loading, permiss
 
 ## Handoff to native creation
 
-Prefer the current native Plugin Creator for the plugin and the native skill creator for any required Skill packaging.
+Prefer the current native Skill Creator for the entry Skill and use the existing Notion app connection rather than recreating the integration.
 
 Provide the creator with:
 
 - The three canonical sources as authoritative inputs.
-- This adapter as the implementation boundary.
+- This adapter as the build-time implementation boundary.
 - The selected source revision and resource mapping.
 - The intended ChatGPT surfaces.
 - Verified Notion capabilities and unresolved setup requirements.
@@ -157,8 +155,9 @@ Review the generated resource loading and integration binding before relying on 
 
 - Test explicit activation in a fresh conversation.
 - Test relevant implicit activation and unrelated non-trigger requests.
-- Execute all behavioral acceptance scenarios in the core without replacing their expected outcomes with adapter-specific criteria.
+- Execute behavioral acceptance scenarios from the core as needed without replacing their expected outcomes with adapter-specific criteria.
 - Include a multi-turn conversation to check continued adherence after initial activation.
+- Include a weak or poorly supported interpretation to verify constructive intellectual resistance rather than automatic agreement.
 
 ### Notion integration
 
