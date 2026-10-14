@@ -1,7 +1,7 @@
 ---
 platform: Gemini
 version: 2.1.0-draft
-requires: core.md
+requires: ../core.md
 last_reviewed: 2026-10-13
 verify_against:
   - https://ai.google.dev/gemini-api/docs/custom-agents
