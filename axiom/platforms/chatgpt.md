@@ -1,8 +1,8 @@
 ---
 platform: ChatGPT / OpenAI
-version: 2.1.0-draft
+version: 2.2.0-draft
 requires: core.md
-last_reviewed: 2026-10-13
+last_reviewed: 2026-10-14
 verify_against:
   - https://help.openai.com/en/articles/20001066-skills-in-chatgpt
   - https://help.openai.com/en/articles/20001256-plugins-in-chatgpt
@@ -14,7 +14,7 @@ verify_against:
 
 # ChatGPT / OpenAI Adapter
 
-ChatGPT- and OpenAI-specific artifact selection, packaging, and handoff guidance only. Mission, workflow, quality hierarchy, and persona semantics come from `../core.md` and `../persona.md`; do not restate them here.
+ChatGPT- and OpenAI-specific artifact selection, packaging, and handoff guidance only. Mission, workflow, quality hierarchy, persona semantics, and durable integration contracts come from canonical sources; do not restate them here.
 
 ## Choosing the OpenAI artifact
 
@@ -57,6 +57,39 @@ Before handoff, provide enough information that the creator does not need to red
 - **assumptions/open questions** — only unresolved issues that could materially change implementation.
 
 Let `skill-creator` own current Skill packaging details. Do not duplicate volatile file-layout, metadata, installation, or troubleshooting rules in Axiom unless a target surface explicitly requires them.
+
+## Canonical agent materialization
+
+When an agent already has canonical repository files, ChatGPT materialization is a build step rather than a new behavioral design exercise.
+
+Separate the inputs into two roles:
+
+- **Runtime authority** — canonical sources such as `core.md`, `persona.md`, and any applicable `integrations/*.md` contracts. These define the behavior the deployed agent must preserve.
+- **Build guidance** — the agent's `platforms/chatgpt.md` adapter. It guides artifact selection, source loading, app binding, validation, and packaging, but is not a second behavioral source.
+
+The native creator should generate the smallest package that can execute those sources. For a Skill-based materialization, keep `SKILL.md` thin: discovery/activation boundaries, source loading, tool access, and platform operation belong there; the canonical behavior should not be copied into it.
+
+Package canonical files as unmodified or fidelity-preserving deployment resources when the platform needs local copies. Generated manifests, metadata, bindings, native icons, and installation files are deployment artifacts and do not become canonical merely because the platform created them.
+
+Prefer existing connected apps and native capabilities before creating custom integration infrastructure. Keep workspace IDs, credentials, private bindings, and similar deployment details out of the public canonical definition.
+
+### Reusable materialization prompt
+
+Use this as a handoff template when the canonical agent files are supplied to ChatGPT's native creator:
+
+> Materialize **<agent name>** for ChatGPT using the supplied repository files as its canonical definition.
+>
+> Treat `core.md`, `persona.md`, and any applicable `integrations/*.md` files as authoritative runtime sources. Treat `platforms/chatgpt.md` as build-time guidance: use it to choose and configure the ChatGPT materialization, but do not treat it as a second behavioral definition.
+>
+> Create the smallest suitable native package described by the adapter. If the result uses an entry Skill, keep `SKILL.md` focused on discovery, activation, canonical-source loading, tool/app access, and operational handoff. Do not duplicate canonical behavior or persona into `SKILL.md`.
+>
+> Preserve the canonical files as deployment resources with high fidelity. Reuse existing connected apps or platform capabilities when they satisfy the integration contracts before creating custom infrastructure.
+>
+> Generate any required manifests, metadata, bindings, native icons, or deployment configuration as platform-owned artifacts. Keep deployment-specific identifiers, credentials, private bindings, and other environment details out of the canonical repository sources.
+>
+> Validate source loading, representative activation, the canonical acceptance scenarios relevant to this deployment, and any connected-system behavior the adapter requires. Report separately what was created, installed, connected, and actually runtime-validated.
+
+Axiom may specialize this template for the current agent by naming the exact canonical files, integrations, existing app connections, target surfaces, and validation scenarios. It should not add platform packaging rules that belong to the native creator.
 
 ## Plugin handoff
 
