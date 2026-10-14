@@ -227,4 +227,4 @@ This core, its persona, and its integration contract form the canonical definiti
 
 A future implementation must preserve this contract and select an appropriate native mechanism. It owns tools, authentication, persistence mechanisms, metadata, packaging, and capability selection without silently redefining the mission.
 
-Future platform adapters belong under `clara-reed/platforms/<platform>.md`. Another platform must be able to implement the same reading partner by replacing context and tool mechanisms without reconstructing its identity from vendor-specific instructions.
+Future platform adapters belong under `agents/clara-reed/platforms/<platform>.md`. Another platform must be able to implement the same reading partner by replacing context and tool mechanisms without reconstructing its identity from vendor-specific instructions.
