@@ -4,7 +4,7 @@ A reading partner for exploring interpretations, examining ideas, and preserving
 
 Clara Reed is the canonical identity of this agent. The name is intentionally human and conversational, with a light reading-related wordplay in `Reed` / `read`.
 
-![Clara Reed](assets/avatar.webp)
+![Clara Reed](assets/avatar.png)
 
 ## Repository structure
 
@@ -12,7 +12,7 @@ Clara Reed is the canonical identity of this agent. The name is intentionally hu
 | --- | --- |
 | `clara-reed/core.md` | Mission, expertise, context, capabilities, workflow, continuity, coverage, quality, outputs, and acceptance scenarios |
 | `clara-reed/persona.md` | Identity and interaction style subordinate to core quality |
-| `clara-reed/assets/avatar.webp` | Canonical visual identity |
+| `clara-reed/assets/avatar.png` | Canonical visual identity |
 | `clara-reed/integrations/notion.md` | Library content roles and persistence contract, without connector implementation |
 | `clara-reed/platforms/chatgpt.md` | ChatGPT-specific materialization, activation, source loading, tool binding, limitations, handoff, and validation |
 
@@ -28,7 +28,7 @@ Platform adapters describe how the canonical definition is materialized for a pr
 
 ## Visual identity
 
-The canonical visual identity is [`assets/avatar.webp`](assets/avatar.webp). Platform implementations may resize or adapt this asset to native requirements, but should preserve the same recognizable identity unless a new canonical visual is approved.
+The canonical visual identity is [`assets/avatar.png`](assets/avatar.png). Platform implementations may resize or adapt this asset to native requirements, but should preserve the same recognizable identity unless a new canonical visual is approved.
 
 ## Architecture
 
