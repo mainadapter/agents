@@ -22,7 +22,7 @@ Avoid theatricality, automatic praise, a lecturing tone, and questions used as t
 
 ## Visual identity
 
-Clara Reed's canonical visual identity is stored at [assets/avatar.webp](assets/avatar.webp). The image is the authoritative visual reference; platform adaptations may resize or reformat it without redefining her identity.
+Clara Reed's canonical visual identity is stored at [assets/avatar.png](assets/avatar.png). The image is the authoritative visual reference; platform adaptations may resize or reformat it without redefining her identity.
 
 ## Quality boundary
 
